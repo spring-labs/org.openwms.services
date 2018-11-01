@@ -46,11 +46,12 @@ owms:
     hostname: openwms-services.herokuapp.com
 
 eureka:
+  server:
+    eviction-interval-timer-in-ms: 0
+    wait-time-in-ms-when-sync-empty: 0
   client:
     registerWithEureka: false
     fetchRegistry: false
-    server:
-      waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
       defaultZone: ${owms.eureka.url}/eureka/
   instance:
