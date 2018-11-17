@@ -1,6 +1,10 @@
 spring:
   application:
     name: openwms-services
+  security:
+    user:
+      # Override both in cloud environment!
+      password: sa
 
 owms:
   srv:
@@ -12,11 +16,6 @@ owms:
 server:
   port: ${PORT:8761}
 
-security:
-  user:
-    # Override both in cloud environment!
-    password: sa
-
 eureka:
   instance:
     secure-port-enabled: false
@@ -26,7 +25,8 @@ eureka:
       password: ${security.user.password}
 
 management:
-  port: ${MGMTPORT:8990}
+  server:
+    port: ${MGMTPORT:8990}
 
 endpoints:
   restart:
