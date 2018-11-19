@@ -76,6 +76,7 @@
     <properties>
         <guava.version>19.0</guava.version>
     </properties>
+
     <build>
         <finalName>openwms-services</finalName>
         <plugins>
