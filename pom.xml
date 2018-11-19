@@ -73,6 +73,9 @@
         </notifiers>
     </ciManagement>
 
+    <properties>
+        <guava.version>19.0</guava.version>
+    </properties>
     <build>
         <finalName>openwms-services</finalName>
         <plugins>
@@ -92,10 +95,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
