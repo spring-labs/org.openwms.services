@@ -5,24 +5,30 @@ spring:
     user:
       # Override both in cloud environment!
       password: sa
+      name: user
 
 owms:
   srv:
     protocol: http
     hostname: localhost
   eureka:
-    url: ${owms.srv.protocol}://${security.user.name}:${security.user.password}@${owms.srv.hostname}:${server.port}
+    url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
 
 server:
   port: ${PORT:8761}
 
 eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: ${owms.eureka.url}/eureka/
   instance:
     secure-port-enabled: false
     non-secure-port-enabled: true
     metadata-map:
-      username: ${security.user.name}
-      password: ${security.user.password}
+      username: ${spring.security.user.name}
+      password: ${spring.security.user.password}
 
 management:
   server:
