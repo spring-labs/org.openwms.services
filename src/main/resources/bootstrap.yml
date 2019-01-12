@@ -6,15 +6,16 @@ spring:
       password: sa
       name: user
 
+server:
+  port: ${PORT:8761}
+
 owms:
   srv:
     protocol: http
     hostname: localhost
   eureka:
+    dashboard: /ui
     url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
-
-server:
-  port: ${PORT:8761}
 
 eureka:
   client:
@@ -30,16 +31,14 @@ eureka:
       password: ${spring.security.user.password}
       protocol: ${owms.srv.protocol}
   dashboard:
-    path: /ui
+    path: ${owms.eureka.dashboard}
 management:
   server:
     port: ${MGMTPORT:8990}
-
-endpoints:
-  restart:
-    enabled: true
-  shutdown:
-    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 ---
 spring:
@@ -56,6 +55,7 @@ spring:
       discovery:
         enabled: false
         service-id: openwms-config
+      enabled: true
 health:
   config:
     enabled: true
