@@ -3,7 +3,6 @@ spring:
     name: openwms-services
   security:
     user:
-      # Override both in cloud environment!
       password: sa
       name: user
 
@@ -13,6 +12,7 @@ owms:
     hostname: localhost
   eureka:
     url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
+    zone: local
 
 server:
   port: ${PORT:8761}
@@ -27,6 +27,7 @@ eureka:
     secure-port-enabled: false
     non-secure-port-enabled: true
     metadata-map:
+      zone: ${owms.eureka.zone}
       username: ${spring.security.user.name}
       password: ${spring.security.user.password}
 
