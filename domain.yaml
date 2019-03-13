@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-domain
+  namespace: knative-serving
+data:
+  knative-cl-knative-group-3d3de4-e02345a0.hcp.eastus.azmk8s.io: ""
