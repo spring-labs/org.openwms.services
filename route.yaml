@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Route
+metadata:
+  name: openwms-services
+  namespace: default
+spec:
+  traffic:
+  - configurationName: openwms-services
+    percent: 100
