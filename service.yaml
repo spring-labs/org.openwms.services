@@ -16,6 +16,3 @@ spec:
             image: docker.io/kennethreitz/httpbin:latest
             ports:
               - containerPort: 80
-  traffic:
-  - configurationName: openwms-services
-    percent: 100
