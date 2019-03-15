@@ -7,6 +7,10 @@ spec:
   runLatest:
     configuration:
       revisionTemplate:
+        metadata:
+          annotations:
+            autoscaling.knative.dev/minScale: "1"
+            autoscaling.knative.dev/maxScale: "5"
         spec:
           container:
             image: docker.io/interface21/openwms-services:latest
