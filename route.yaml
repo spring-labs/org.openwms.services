@@ -4,6 +4,7 @@ metadata:
   name: openwms-services
   namespace: default
 spec:
+  domain: knative-cl-knative-group-3d3de4-e02345a0.hcp.eastus.azmk8s.io
   traffic:
   - configurationName: openwms-services
     percent: 100
