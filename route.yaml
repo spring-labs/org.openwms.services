@@ -4,7 +4,7 @@ metadata:
   name: openwms-services
   namespace: default
 spec:
-  domain: openwms-services.default.dev.gswkbook.com
+  # domain: openwms-services.default.dev.gswkbook.com
   traffic:
   - configurationName: openwms-services
     percent: 100
