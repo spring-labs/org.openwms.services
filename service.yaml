@@ -13,6 +13,6 @@ spec:
             autoscaling.knative.dev/maxScale: "5"
         spec:
           container:
-            image: docker.io/kennethreitz/httpbin:latest
+            image: docker.io/interface21/openwms-services:latest
             ports:
-              - containerPort: 80
+              - containerPort: 8761
