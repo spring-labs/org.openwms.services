@@ -3,6 +3,12 @@ os: linux
 files:
   - source: ./
     destination: /home/ubuntu/app
+permissions:
+  - object: /home/ubuntu/app
+    owner: ubuntu
+    mode: 755
+    type:
+      - directory
 hooks:
   ApplicationStart:
     - location: runapp.sh
