@@ -6,7 +6,7 @@ files:
 
 permissions:
   - object: /home/ubuntu/app
-    pattern: "**"
+    pattern: "*.sh"
     owner: root
     group: root
     mode: 755
