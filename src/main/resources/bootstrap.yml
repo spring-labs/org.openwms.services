@@ -10,19 +10,19 @@ server:
   port: ${PORT:8761}
 
 owms:
-  srv:
-    protocol: http
-    hostname: localhost
   eureka:
     url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
     zone: ${owms.eureka.url}/eureka/
+  srv:
+    protocol: http
+    hostname: localhost
 
 # https://medium.com/@fahimfarookme/the-mystery-of-eureka-self-preservation-c7aa0ed1b799
 eureka:
   client:
     register-with-eureka: false # default is true
     fetch-registry: false # default is true
-    instance-info-replication-interval-seconds: 30 # default is 30
+    instance-info-replication-interval-seconds: 10 # default is 30
     service-url:
       defaultZone: ${owms.eureka.zone} # Must be camelCase
   server:
@@ -34,10 +34,10 @@ eureka:
     secure-port-enabled: false
     non-secure-port-enabled: true
     metadata-map:
-      zone: ${owms.eureka.zone}
       username: ${spring.security.user.name}
       password: ${spring.security.user.password}
       protocol: ${owms.srv.protocol}
+      zone: ${owms.eureka.zone}
    # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
 
 management:
@@ -46,7 +46,7 @@ management:
 
 ---
 spring:
-  profiles: CLOUD
+  profiles: HEROKU
   main:
     banner-mode: "OFF"
 
@@ -67,7 +67,7 @@ eureka:
   instance:
     secure-port-enabled: true
     non-secure-port-enabled: false
-    status-page-url: ${owms.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/info
-    health-check-url: ${owms.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/health
-    home-page-url: ${owms.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/
+    status-page-url: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/info
+    health-check-url: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/health
+    home-page-url: ${owms.srv.protocol}://${owms.srv.hostname}:${server.port}/actuator/
 
