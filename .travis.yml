@@ -2,8 +2,18 @@ language: java
 jdk:
 - openjdk8
 
+cache:
+  directories:
+    - .autoconf
+    - $TRAVIS_HOME/.m2
+
 services:
 - docker
+
+install: true
+
+script:
+  - mvn package -Dci.buildNumber=$TRAVIS_BUILD_NUMBER -U
 
 after_success:
 - docker build -t interface21/openwms-services:latest .
