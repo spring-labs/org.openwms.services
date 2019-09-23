@@ -30,6 +30,7 @@ eureka:
     eviction-interval-timer-in-ms: 60000 # default is 60000
     enable-self-preservation: false # default is true
     renewal-percent-threshold: 0.49 # default is 0.85
+    peer-node-read-timeout-ms: 1000 # default is 200
   instance:
     secure-port-enabled: false
     non-secure-port-enabled: true
