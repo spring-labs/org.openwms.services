@@ -6,9 +6,6 @@ spring:
       password: sa
       name: user
 
-server:
-  port: ${PORT:8761}
-
 owms:
   eureka:
     url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
@@ -16,6 +13,9 @@ owms:
   srv:
     protocol: http
     hostname: localhost
+
+server:
+  port: ${PORT:8761}
 
 # https://medium.com/@fahimfarookme/the-mystery-of-eureka-self-preservation-c7aa0ed1b799
 eureka:
