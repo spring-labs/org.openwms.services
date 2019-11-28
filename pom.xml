@@ -63,7 +63,7 @@
     </ciManagement>
 
     <properties>
-        <spring-cloud-dependencies.version>Hoxton.RC2</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>Hoxton.RELEASE</spring-cloud-dependencies.version>
         <HdrHistogram.version>2.1.11</HdrHistogram.version>
     </properties>
 
@@ -147,14 +147,6 @@
             <releases>
                 <enabled>false</enabled>
             </releases>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone-local</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
     </repositories>
 </project>
