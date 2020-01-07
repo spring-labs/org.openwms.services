@@ -3,7 +3,14 @@ A typical service discovery server like shown in all SpringBoot examples
 
 ![Build status][ci-image]
 
-## Release
+# Build and Run locally
+
+```
+$ ./mvnw package
+$ java -jar target/openwms-services.jar 
+```
+
+# Release
 
 ```
 $ mvn clean deploy -Prelease,gpg
