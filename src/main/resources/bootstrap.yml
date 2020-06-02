@@ -3,8 +3,8 @@ spring:
     name: openwms-services
   security:
     user:
-      password: sa
       name: user
+      password: sa
 
 owms:
   eureka:
@@ -42,6 +42,10 @@ eureka:
    # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
   server:
     port: ${MGMTPORT:8990}
 
