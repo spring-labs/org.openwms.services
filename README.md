@@ -16,4 +16,8 @@ $ java -jar target/openwms-services.jar
 $ mvn clean deploy -Prelease,gpg
 ```
 
-[ci-image]: https://img.shields.io/jenkins/s/http/openwms.mooo.com:8080/view/All/job/Spring%20Labs/job/org.openwms.services.svg
+# Resources
+
+[![Build status](https://travis-ci.com/spring-labs/org.openwms.services.svg?branch=master)](https://travis-ci.com/spring-labs/org.openwms.services)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Join the chat at https://gitter.im/openwms/org.openwms](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/openwms/org.openwms?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
