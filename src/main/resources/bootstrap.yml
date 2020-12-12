@@ -1,3 +1,11 @@
+spring:
+  application:
+    name: openwms-services
+  security:
+    user:
+      name: user
+      password: sa
+
 owms:
   eureka:
     url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
@@ -5,6 +13,9 @@ owms:
   srv:
     protocol: http
     hostname: localhost
+
+server:
+  port: ${PORT:8761}
 
 # https://medium.com/@fahimfarookme/the-mystery-of-eureka-self-preservation-c7aa0ed1b799
 eureka:
@@ -28,12 +39,9 @@ eureka:
       password: ${spring.security.user.password}
       protocol: ${owms.srv.protocol}
       zone: ${owms.eureka.zone}
-   # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
+    # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
 
 management:
-  endpoint:
-    health:
-      show-details: always
   endpoints:
     web:
       exposure:
@@ -43,9 +51,7 @@ management:
 
 ---
 spring:
-  config:
-    activate:
-      on-profile: HEROKU
+  profiles: HEROKU
   main:
     banner-mode: "OFF"
 
