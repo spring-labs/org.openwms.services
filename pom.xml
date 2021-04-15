@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>19</version>
+        <version>19.1</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.services</artifactId>
@@ -14,7 +14,7 @@
     <url>https://github.com/spring-labs/${project.artifactId}</url>
 
     <issueManagement>
-        <system>github</system>
+        <system>GitHub</system>
         <url>https://github.com/spring-labs/${project.artifactId}/issues</url>
     </issueManagement>
 
@@ -50,8 +50,8 @@
     </developers>
 
     <ciManagement>
-        <system>travis</system>
-        <url>https://travis-ci.com/spring-labs/${project.artifactId}</url>
+        <system>GitHub</system>
+        <url>https://github.com/spring-labs/${project.artifactId}/actions</url>
         <notifiers>
             <notifier>
                 <type>mail</type>
@@ -112,7 +112,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <executable>true</executable>
+                    <layers>
+                        <configuration>${project.basedir}/src/layers.xml</configuration>
+                        <enabled>true</enabled>
+                    </layers>
                 </configuration>
             </plugin>
         </plugins>
