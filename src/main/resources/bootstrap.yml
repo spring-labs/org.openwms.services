@@ -22,7 +22,7 @@ eureka:
   client:
     register-with-eureka: false # default is true
     fetch-registry: false # default is true
-    instance-info-replication-interval-seconds: 10 # default is 30
+    instance-info-replication-interval-seconds: 30 # default is 30
     service-url:
       defaultZone: ${owms.eureka.zone} # Must be camelCase
   server:
