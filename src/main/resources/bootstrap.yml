@@ -30,7 +30,7 @@ eureka:
 
     # The interval in which the instance eviction task scans for instances with expired leases.
     # Given in milliseconds.
-    eviction-interval-timer-in-ms: 2000 # default is 60000
+    eviction-interval-timer-in-ms: 60000 # default is 60000
 
     # Switch off self-preservation. Will turn lease expiration on and evict all instances which no longer sent a heartbeat and whose lease has expired.
     # Self-preservation is desirable for Eureka clusters and where network outages (e.g. between data centers) could be possible.
