@@ -69,8 +69,8 @@
         <jersey.version>1.19.4</jersey.version>
         <jsr305.version>3.0.2</jsr305.version>
         <spring-cloud-dependencies.version>Hoxton.SR10</spring-cloud-dependencies.version>
-        <woodstox-core.version>6.2.0</woodstox-core.version>
         <stax2-api.version>4.2.1</stax2-api.version>
+        <woodstox-core.version>6.2.0</woodstox-core.version>
     </properties>
 
     <reporting>
