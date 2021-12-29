@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>19.1</version>
+        <version>19.2</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.services</artifactId>
@@ -68,7 +68,7 @@
         <HdrHistogram.version>2.1.12</HdrHistogram.version>
         <jersey.version>1.19.4</jersey.version>
         <jsr305.version>3.0.2</jsr305.version>
-        <spring-cloud-dependencies.version>Hoxton.SR9</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>Hoxton.SR10</spring-cloud-dependencies.version>
         <woodstox-core.version>6.2.0</woodstox-core.version>
         <stax2-api.version>4.2.1</stax2-api.version>
     </properties>
@@ -268,6 +268,14 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </pluginRepository>
     </pluginRepositories>
 </project>
