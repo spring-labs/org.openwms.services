@@ -1,6 +1,9 @@
 spring:
   application:
     name: openwms-services
+  cloud:
+    refresh:
+      enabled: false
   security:
     user:
       name: user
