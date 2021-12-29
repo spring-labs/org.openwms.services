@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>19.1</version>
+        <version>20</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.services</artifactId>
@@ -63,13 +63,11 @@
     </ciManagement>
 
     <properties>
-        <commons-configuration.version>1.10</commons-configuration.version>
         <guava.version>30.0-jre</guava.version>
-        <HdrHistogram.version>2.1.12</HdrHistogram.version>
         <jersey.version>1.19.4</jersey.version>
-        <jsr305.version>3.0.2</jsr305.version>
-        <spring-cloud-dependencies.version>Hoxton.SR9</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>2021.0.0</spring-cloud-dependencies.version>
         <woodstox-core.version>6.2.0</woodstox-core.version>
+        <servo-core.version>0.12.21</servo-core.version>
         <stax2-api.version>4.2.1</stax2-api.version>
     </properties>
 
@@ -130,44 +128,34 @@
                 <version>${woodstox-core.version}</version>
             </dependency>
             <dependency>
+                <!-- com.netflix.eureka:eureka-client has an internal clash -->
+                <groupId>com.netflix.servo</groupId>
+                <artifactId>servo-core</artifactId>
+                <version>${servo-core.version}</version>
+            </dependency>
+            <dependency>
+                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
                 <groupId>org.codehaus.woodstox</groupId>
                 <artifactId>stax2-api</artifactId>
                 <version>${stax2-api.version}</version>
             </dependency>
             <dependency>
-                <!-- Bites with Guava -->
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <version>${jsr305.version}</version>
-            </dependency>
-            <dependency>
+                <!-- com.netflix.eureka:eureka-client has an internal clash -->
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
             <dependency>
-                <!-- com.netflix.eureka:eureka has an internal clash -->
+                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-client</artifactId>
                 <version>${jersey.version}</version>
             </dependency>
             <dependency>
-                <!-- com.netflix.eureka:eureka has an internal clash -->
+                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-core</artifactId>
                 <version>${jersey.version}</version>
-            </dependency>
-            <dependency>
-                <!-- com.netflix.eureka:eureka has an internal clash -->
-                <groupId>commons-configuration</groupId>
-                <artifactId>commons-configuration</artifactId>
-                <version>${commons-configuration.version}</version>
-            </dependency>
-            <dependency>
-                <!-- com.netflix.eureka:eureka has an internal clash -->
-                <groupId>org.hdrhistogram</groupId>
-                <artifactId>HdrHistogram</artifactId>
-                <version>${HdrHistogram.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -209,10 +197,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>io.interface21</groupId>
