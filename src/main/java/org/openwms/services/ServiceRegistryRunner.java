@@ -16,6 +16,7 @@
 package org.openwms.services;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import org.ameba.app.BaseConfiguration;
 import org.ameba.app.SolutionApp;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 /**
  * A ServiceRegistryRunner.
@@ -33,6 +35,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication(scanBasePackageClasses = SolutionApp.class, scanBasePackages = "org.openwms")
 @EnableEurekaServer
 @EnableDiscoveryClient
+@Import(BaseConfiguration.class)
 public class ServiceRegistryRunner {
 
     @Bean
