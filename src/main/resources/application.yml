@@ -54,11 +54,11 @@ eureka:
     secure-port-enabled: false
     non-secure-port-enabled: true
     metadata-map:
-      username: ${spring.security.user.name}
+    # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
       password: ${spring.security.user.password}
       protocol: ${owms.srv.protocol}
+      username: ${spring.security.user.name}
       zone: ${owms.eureka.zone}
-    # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
 
 management:
   endpoints:
