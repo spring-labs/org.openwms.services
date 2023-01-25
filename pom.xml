@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>22</version>
+        <version>23</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.services</artifactId>
@@ -69,7 +69,7 @@
         <servo-core.version>0.12.21</servo-core.version>
         <spring-cloud-dependencies.version>2021.0.5</spring-cloud-dependencies.version>
         <stax2-api.version>4.2.1</stax2-api.version>
-        <woodstox-core.version>6.2.0</woodstox-core.version>
+        <woodstox-core.version>6.3.1</woodstox-core.version>
     </properties>
 
     <reporting>
