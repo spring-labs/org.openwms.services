@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>24</version>
+        <version>25</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.services</artifactId>
@@ -96,6 +96,10 @@
         <finalName>openwms-services</finalName>
         <plugins>
             <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
@@ -122,6 +126,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.3</version>
+            </dependency>
             <dependency>
                 <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
                 <groupId>org.codehaus.woodstox</groupId>
@@ -169,6 +178,13 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <!-- !! Added temporarily !! -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
