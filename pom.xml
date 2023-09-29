@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>24</version>
+        <version>25</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.services</artifactId>
@@ -67,8 +67,7 @@
         <guava.version>30.0-jre</guava.version>
         <jersey.version>1.19.4</jersey.version>
         <servo-core.version>0.12.21</servo-core.version>
-        <spring-cloud-dependencies.version>2021.0.7</spring-cloud-dependencies.version>
-        <stax2-api.version>4.2.1</stax2-api.version>
+        <spring-cloud-dependencies.version>2021.0.8</spring-cloud-dependencies.version>
         <woodstox-core.version>6.3.1</woodstox-core.version>
     </properties>
 
@@ -123,12 +122,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
-                <groupId>org.codehaus.woodstox</groupId>
-                <artifactId>stax2-api</artifactId>
-                <version>${stax2-api.version}</version>
-            </dependency>
-            <dependency>
                 <!-- com.netflix.eureka:eureka-client has an internal clash -->
                 <groupId>com.fasterxml.woodstox</groupId>
                 <artifactId>woodstox-core</artifactId>
@@ -141,7 +134,7 @@
                 <version>${guava.version}</version>
             </dependency>
             <dependency>
-                <!-- com.netflix.eureka:eureka-client has an internal clash -->
+                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-client -->
                 <groupId>com.netflix.servo</groupId>
                 <artifactId>servo-core</artifactId>
                 <version>${servo-core.version}</version>
@@ -194,6 +187,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- 3rd party dependencies -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -202,6 +196,16 @@
         <dependency>
             <groupId>io.interface21</groupId>
             <artifactId>ameba-lib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
@@ -235,6 +239,9 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </repository>
         <repository>
             <id>spring-milestones</id>
@@ -243,6 +250,9 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -253,11 +263,17 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </pluginRepository>
         <pluginRepository>
             <id>sonatype-nexus-snapshots</id>
             <name>Snapshot Repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
             <releases>
                 <enabled>false</enabled>
             </releases>
