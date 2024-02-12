@@ -1,4 +1,4 @@
-# org.openwms.services
+# OpenWMS Registry Service
 A typical service discovery server used to register microservices and find each other, based on Netflix Eureka.
 
 ![Build status][ci-image]
