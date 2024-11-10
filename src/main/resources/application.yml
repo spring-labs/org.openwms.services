@@ -11,8 +11,8 @@ owms:
     url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
     zone: ${owms.eureka.url}/eureka/
   srv:
-    protocol: http
     hostname: localhost
+    protocol: http
 
 server:
   port: ${PORT:8761}
@@ -67,6 +67,12 @@ management:
         include: "prometheus"
   server:
     port: ${MGMTPORT:8990}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: SECURED
 
 ---
 spring:

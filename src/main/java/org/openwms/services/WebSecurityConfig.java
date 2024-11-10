@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Heiko Scherrer
+ * Copyright 2005-2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,22 +15,39 @@
  */
 package org.openwms.services;
 
+import org.ameba.http.PermitAllCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.filter.CorsFilter;
 
 /**
  * A WebSecurityConfig.
  *
- * @author <a href="mailto:scherrer@openwms.org">Heiko Scherrer</a>
+ * @author Heiko Scherrer
  */
 @Configuration
 public class WebSecurityConfig {
 
+    @Profile("SECURED")
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().ignoringAntMatchers("/eureka/**");
+    public SecurityFilterChain securedFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .addFilter(new CorsFilter(new PermitAllCorsConfigurationSource()));
+        return http.build();
+    }
+
+    @Profile("!SECURED")
+    @Bean
+    public SecurityFilterChain unsecuredFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(x -> x.requestMatchers("/eureka/**").permitAll())
+                .csrf(AbstractHttpConfigurer::disable)
+                .addFilter(new CorsFilter(new PermitAllCorsConfigurationSource()));
         return http.build();
     }
 }
