@@ -13,8 +13,6 @@ owms:
   srv:
     hostname: localhost
     protocol: http
-  tracing:
-    url: http://localhost:4317
 
 server:
   port: ${PORT:8761}
@@ -67,25 +65,10 @@ management:
     web:
       exposure:
         include: "prometheus"
-  metrics:
-    distribution:
-      percentiles-histogram:
-        greeting: true
-        http:
-          server:
-            requests: true
-    tags:
-      application: ${spring.application.name}
-  otlp:
-    tracing:
-      endpoint: ${owms.tracing.url}
   prometheus:
     metrics:
       export:
         enabled: true
-  tracing:
-    sampling:
-      probability: 1.0
   server:
     port: ${MGMTPORT:8990}
 
