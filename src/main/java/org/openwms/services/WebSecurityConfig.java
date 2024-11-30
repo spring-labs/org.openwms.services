@@ -24,6 +24,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.CorsFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 /**
  * A WebSecurityConfig.
  *
@@ -35,8 +37,10 @@ public class WebSecurityConfig {
     @Profile("SECURED")
     @Bean
     public SecurityFilterChain securedFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable)
+
+        http.authorizeHttpRequests(x -> x.anyRequest().authenticated())
+                .httpBasic(withDefaults());
+        http.csrf(AbstractHttpConfigurer::disable)
                 .addFilter(new CorsFilter(new PermitAllCorsConfigurationSource()));
         return http.build();
     }
