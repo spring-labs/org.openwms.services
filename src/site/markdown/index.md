@@ -1,12 +1,15 @@
-# org.openwms.services
-A typical service discovery server used to register microservices and find each other, based on Netflix Eureka.
-
-![Build status][ci-image]
+# OpenWMS.org Registry Service
+A typical discovery service used to register microservice instances that need to find each other, based on Netflix Eureka.
 
 # Build and Run locally
 ```
 $ ./mvnw package
 $ java -jar target/openwms-services-exec.jar 
+```
+
+# Start as Docker container
+```
+$ docker run -p 8761:8761 interface21/openwms-services:latest
 ```
 
 # Release

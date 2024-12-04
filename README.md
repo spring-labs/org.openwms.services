@@ -7,6 +7,11 @@ $ ./mvnw package
 $ java -jar target/openwms-services-exec.jar 
 ```
 
+# Start as Docker container
+```
+$ docker run -p 8761:8761 interface21/openwms-services:latest
+```
+
 # Release
 ```
 $ ./mvnw release:prepare
