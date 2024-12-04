@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>26</version>
+        <version>27</version>
         <relativePath />
     </parent>
     <artifactId>org.openwms.services</artifactId>
@@ -27,8 +27,8 @@
 
     <scm>
         <url>https://github.com/spring-labs/${project.artifactId}</url>
-        <connection>scm:git:https://${scmuser}github.com/spring-labs/${project.artifactId}.git</connection>
-        <developerConnection>scm:git:https://${scmuser}github.com/spring-labs/${project.artifactId}.git</developerConnection>
+        <connection>scm:git:https://github.com/spring-labs/${project.artifactId}.git</connection>
+        <developerConnection>scm:git:https://github.com/spring-labs/${project.artifactId}.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -64,14 +64,12 @@
     </ciManagement>
 
     <properties>
-        <ameba-lib.version>4.1-SNAPSHOT</ameba-lib.version>
-        <guava.version>32.0.0-jre</guava.version>
-        <httpclient.version>4.5.14</httpclient.version>
-        <jersey.version>1.19.4</jersey.version>
-        <servo-core.version>0.12.21</servo-core.version>
-        <spring-cloud-dependencies.version>2023.0.1</spring-cloud-dependencies.version>
-        <woodstox-core.version>6.3.1</woodstox-core.version>
+        <error_prone_annotations.version>2.28.0</error_prone_annotations.version>
         <hk2-api.version>3.1.1</hk2-api.version>
+        <httpclient.version>4.5.14</httpclient.version>
+        <spring-cloud-dependencies.version>2024.0.0</spring-cloud-dependencies.version>
+        <stax2-api.version>4.2.2</stax2-api.version>
+        <woodstox-core.version>7.0.0</woodstox-core.version>
     </properties>
 
     <reporting>
@@ -125,34 +123,22 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <!-- com.netflix.eureka:eureka-client has an internal clash -->
+                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-server -->
                 <groupId>com.fasterxml.woodstox</groupId>
                 <artifactId>woodstox-core</artifactId>
                 <version>${woodstox-core.version}</version>
             </dependency>
             <dependency>
-                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-client -->
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
+                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-server -->
+                <groupId>com.google.errorprone</groupId>
+                <artifactId>error_prone_annotations</artifactId>
+                <version>${error_prone_annotations.version}</version>
             </dependency>
             <dependency>
-                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-client -->
-                <groupId>com.netflix.servo</groupId>
-                <artifactId>servo-core</artifactId>
-                <version>${servo-core.version}</version>
-            </dependency>
-            <dependency>
-                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
-                <groupId>com.sun.jersey</groupId>
-                <artifactId>jersey-client</artifactId>
-                <version>${jersey.version}</version>
-            </dependency>
-            <dependency>
-                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
-                <groupId>com.sun.jersey</groupId>
-                <artifactId>jersey-core</artifactId>
-                <version>${jersey.version}</version>
+                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-server -->
+                <groupId>org.codehaus.woodstox</groupId>
+                <artifactId>stax2-api</artifactId>
+                <version>${stax2-api.version}</version>
             </dependency>
             <dependency>
                 <!-- Internal clash in Spring Cloud -->
@@ -161,6 +147,7 @@
                 <version>${httpclient.version}</version>
             </dependency>
             <dependency>
+                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-server -->
                 <groupId>org.glassfish.hk2</groupId>
                 <artifactId>hk2-api</artifactId>
                 <version>${hk2-api.version}</version>
@@ -225,17 +212,6 @@
 
     <repositories>
         <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Snapshot Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
             <id>sonatype-nexus-staging</id>
             <name>Staging Repository</name>
             <url>https://oss.sonatype.org/content/groups/staging/</url>
@@ -246,53 +222,7 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-        <pluginRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Snapshot Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
 
     <profiles>
         <profile>
