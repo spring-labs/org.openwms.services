@@ -10,7 +10,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Apache Maven Doxia Site Renderer 2.0.0" />
-    <title>org.openwms.services – OpenWMS.org CORE: Service Registry</title>
+    <title>OpenWMS.org Registry Service – OpenWMS.org CORE: Service Registry</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-2.0.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -84,14 +84,17 @@
         </div>
       </header>
         <main id="bodyColumn">
-<section><a id="org.openwms.services"></a>
-<h1>org.openwms.services</h1>
-<p>A typical service discovery server used to register microservices and find each other, based on Netflix Eureka.</p>
-<p>![Build status][ci-image]</p></section><section><a id="Build_and_Run_locally"></a>
+<section><a id="OpenWMS.org_Registry_Service"></a>
+<h1>OpenWMS.org Registry Service</h1>
+<p>A typical discovery service used to register microservice instances that need to find each other, based on Netflix Eureka.</p></section><section><a id="Build_and_Run_locally"></a>
 <h1>Build and Run locally</h1>
 
 <pre class="prettyprint linenums"><code class="nohighlight nocode">$ ./mvnw package
 $ java -jar target/openwms-services-exec.jar 
+</code></pre></section><section><a id="Start_as_Docker_container"></a>
+<h1>Start as Docker container</h1>
+
+<pre class="prettyprint linenums"><code class="nohighlight nocode">$ docker run -p 8761:8761 interface21/openwms-services:latest
 </code></pre></section><section><a id="Release"></a>
 <h1>Release</h1>
 
