@@ -49,7 +49,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain unsecuredFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(x -> x.requestMatchers("/eureka/**").permitAll())
+                .authorizeHttpRequests(x -> x.requestMatchers("/**").permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilter(new CorsFilter(new PermitAllCorsConfigurationSource()));
         return http.build();
