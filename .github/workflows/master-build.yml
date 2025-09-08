@@ -33,7 +33,7 @@ jobs:
           if [[ "$VERSION" =~ -SNAPSHOT$ ]]; then
             echo "⚠️ Version is snapshot: $VERSION - skipping publish"
             echo "should_publish=false" >> $GITHUB_OUTPUT
-            VERSION=latest
+            export VERSION=latest
           else
             echo "✅ Version is not a snapshot: $VERSION - will publish"
             echo "should_publish=true" >> $GITHUB_OUTPUT
