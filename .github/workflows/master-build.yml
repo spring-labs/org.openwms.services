@@ -38,6 +38,7 @@ jobs:
             echo "✅ Version is not a snapshot: $VERSION - will publish"
             echo "should_publish=true" >> $GITHUB_OUTPUT
           fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - uses: s4u/maven-settings-action@v2.8.0
         with:
@@ -77,10 +78,10 @@ jobs:
           -U -B -Prelease $MAVEN_OPTS
 
       - name: Build Image
-        run: ./scripts/docker_build $VERSION
+        run: ./scripts/docker_build ${{ steps.version-check.outputs.version }}
 
       - name: Upload Image
-        run: ./scripts/docker_push $VERSION
+        run: ./scripts/docker_push ${{ steps.version-check.outputs.version }}
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
