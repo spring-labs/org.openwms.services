@@ -85,3 +85,22 @@ jobs:
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Install tools
+        if: steps.version-check.outputs.should_publish == 'true'
+        run: |
+          git config --global user.email "ci@example.com"
+          git config --global user.name "CI Server"
+
+      - name: Site
+        if: steps.version-check.outputs.should_publish == 'true'
+        run: >
+          ./mvnw post-integration-test site scm-publish:publish-scm
+          -DsurefireArgs=-Dspring.profiles.active=TEST
+          -Dargs=-Dspring.profiles.active=TEST
+          -Dscmpublish.pubScmUrl=scm:git:https://openwms:$PUSHKEY@github.com/spring-labs/org.openwms.services.git
+          -DdeveloperConnectionUrl=scm:git:https://openwms:$PUSHKEY@github.com/spring-labs/org.openwms.services.git
+          -Dci.buildNumber=$GITHUB_RUN_NUMBER
+          -Prelease,coverage -B $MAVEN_OPTS
+        env:
+          PUSHKEY: ${{ secrets.GITHUB_TOKEN }}
