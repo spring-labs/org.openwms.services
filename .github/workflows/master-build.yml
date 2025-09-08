@@ -28,7 +28,6 @@ jobs:
         if: github.event_name != 'pull_request'
         id: version-check
         run: |
-          ./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout
           VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
           echo "Project version: $VERSION"
           if [[ "$VERSION" =~ -SNAPSHOT$ ]]; then
