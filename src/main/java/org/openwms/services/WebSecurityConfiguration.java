@@ -27,12 +27,12 @@ import org.springframework.web.filter.CorsFilter;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
- * A WebSecurityConfig.
+ * A WebSecurityConfiguration.
  *
  * @author Heiko Scherrer
  */
 @Configuration
-public class WebSecurityConfig {
+public class WebSecurityConfiguration {
 
     @Profile("SECURED")
     @Bean
