@@ -6,8 +6,8 @@
     <parent>
         <groupId>org.openwms</groupId>
         <artifactId>org.openwms.parent</artifactId>
-        <version>27.6</version>
-        <relativePath />
+        <version>27.7.1</version>
+        <relativePath/>
     </parent>
     <artifactId>org.openwms.services</artifactId>
     <version>2.4.0-SNAPSHOT</version>
@@ -42,7 +42,7 @@
             <url>https://openwms.github.io/</url>
             <organization>Interface21.io</organization>
             <organizationUrl>https://www.interface21.io</organizationUrl>
-            <timezone>+2</timezone>
+            <timezone>+1</timezone>
             <roles>
                 <role>Project Lead</role>
                 <role>Architect</role>
@@ -66,12 +66,11 @@
     </ciManagement>
 
     <properties>
-        <error_prone_annotations.version>2.40.0</error_prone_annotations.version>
+        <error_prone_annotations.version>2.43.0</error_prone_annotations.version>
         <hk2-api.version>3.1.1</hk2-api.version>
         <guava.version>33.0.0-jre</guava.version>
         <httpclient.version>4.5.14</httpclient.version>
         <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
-        <stax2-api.version>4.2.2</stax2-api.version>
         <woodstox-core.version>7.1.1</woodstox-core.version>
     </properties>
 
@@ -142,12 +141,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-server -->
-                <groupId>org.codehaus.woodstox</groupId>
-                <artifactId>stax2-api</artifactId>
-                <version>${stax2-api.version}</version>
             </dependency>
             <dependency>
                 <!-- Internal clash in Spring Cloud -->

@@ -13,11 +13,15 @@ owms:
   srv:
     hostname: localhost
     protocol: http
-  tracing:
-    url: http://localhost:4317
 
 server:
   port: ${PORT:8761}
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
 
 # https://medium.com/@fahimfarookme/the-mystery-of-eureka-self-preservation-c7aa0ed1b799
 eureka:
@@ -59,9 +63,9 @@ eureka:
       protocol: ${owms.srv.protocol}
       username: ${spring.security.user.name}
       zone: ${owms.eureka.zone}
-      prometheus.scrape: "true"
-      prometheus.path: "/actuator/prometheus"
-      prometheus.port: ${server.port}
+      "[prometheus.scrape]": "true"
+      "[prometheus.path]": "/actuator/prometheus"
+      "[prometheus.port]": ${server.port}
     non-secure-port-enabled: true
     secure-port-enabled: false
 
@@ -77,6 +81,24 @@ management:
   info:
     git:
       mode: simple
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  server:
+    port: ${MGMTPORT:8990}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: OTLP
+
+owms:
+  tracing:
+    url: http://localhost:4317
+
+management:
   metrics:
     distribution:
       percentiles-histogram:
@@ -89,12 +111,6 @@ management:
   otlp:
     tracing:
       endpoint: ${owms.tracing.url}
-  prometheus:
-    metrics:
-      export:
-        enabled: true
-  server:
-    port: ${MGMTPORT:8990}
   tracing:
     sampling:
       probability: 1.0
