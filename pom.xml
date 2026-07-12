@@ -67,7 +67,7 @@
 
     <properties>
         <error_prone_annotations.version>2.50.0</error_prone_annotations.version>
-        <hk2-api.version>4.0.0-M3</hk2-api.version>
+        <hk2-api.version>4.0.1</hk2-api.version>
         <httpclient.version>4.5.14</httpclient.version>
         <spring-cloud-dependencies.version>2025.1.2</spring-cloud-dependencies.version>
         <woodstox-core.version>7.1.1</woodstox-core.version>
