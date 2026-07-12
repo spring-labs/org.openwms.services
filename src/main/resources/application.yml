@@ -17,12 +17,6 @@ owms:
 server:
   port: ${PORT:8761}
 
-springdoc:
-  api-docs:
-    enabled: false
-  swagger-ui:
-    enabled: false
-
 # https://medium.com/@fahimfarookme/the-mystery-of-eureka-self-preservation-c7aa0ed1b799
 eureka:
   client:
@@ -30,7 +24,8 @@ eureka:
     healthcheck:
       enabled: false
     instance-info-replication-interval-seconds: 30 # default is 30
-    register-with-eureka: false # default is true
+    # The registry registers itself so that it is discoverable by Prometheus and Spring Boot Admin
+    register-with-eureka: true
     service-url:
       defaultZone: ${owms.eureka.zone} # Must be camelCase
   server:
@@ -50,22 +45,22 @@ eureka:
     # Specifically, the following equation is used: current renewal threshold = (60s / expected-client-renewal-interval-seconds) * renewal-percent-threshold * current number of client instances.
     # In this case:
     # - for one registered client: 60 / 3 * 0.5 * 1 = 10.
-    # - for two registered clients: 60 / 3 * 0,5 * 2 = 20.
+    # - for two registered clients: 60 / 3 * 0.5 * 2 = 20.
     # As soon as two clients are connected:
-    expected-client-renewal-interval-seconds:  3
+    expected-client-renewal-interval-seconds: 3
 
     renewal-percent-threshold: 0.49 # default is 0.85
     peer-node-read-timeout-ms: 1000 # default is 200
   instance:
     metadata-map:
-    # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
+      # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
       password: ${spring.security.user.password}
       protocol: ${owms.srv.protocol}
       username: ${spring.security.user.name}
       zone: ${owms.eureka.zone}
       "[prometheus.scrape]": "true"
       "[prometheus.path]": "/actuator/prometheus"
-      "[prometheus.port]": ${server.port}
+      "[prometheus.port]": ${management.server.port}
     non-secure-port-enabled: true
     secure-port-enabled: false
 
@@ -73,50 +68,20 @@ info:
   scm-url: "@scm.url@"
   build-url: "@ciManagement.url@"
 
+# In production these endpoints must be protected by the gateway, this is not the responsibility of
+# this service
 management:
   endpoints:
     web:
       exposure:
-        include: "prometheus"
+        include: "health,info,loggers,prometheus"
   info:
     git:
       mode: simple
-  prometheus:
+  otlp:
     metrics:
       export:
-        enabled: true
+        enabled: false # Metrics are scraped by Prometheus, OTLP is only used for traces
   server:
     port: ${MGMTPORT:8990}
 
----
-spring:
-  config:
-    activate:
-      on-profile: OTLP
-
-owms:
-  tracing:
-    url: http://localhost:4317
-
-management:
-  metrics:
-    distribution:
-      percentiles-histogram:
-        greeting: true
-        http:
-          server:
-            requests: true
-    tags:
-      application: ${spring.application.name}
-  otlp:
-    tracing:
-      endpoint: ${owms.tracing.url}
-  tracing:
-    sampling:
-      probability: 1.0
-
----
-spring:
-  config:
-    activate:
-      on-profile: SECURED

@@ -1,0 +1,20 @@
+owms:
+  tracing:
+    url: http://localhost:4317
+
+management:
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: ${owms.tracing.url}
+          transport: grpc
+  tracing:
+    sampling:
+      probability: 1.0

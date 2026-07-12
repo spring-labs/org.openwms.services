@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openwms.services;
+package org.openwms.services.app;
 
 import org.ameba.http.PermitAllCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
@@ -27,17 +27,16 @@ import org.springframework.web.filter.CorsFilter;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
- * A WebSecurityConfiguration.
+ * A ServiceRegistrySecurityConfiguration.
  *
  * @author Heiko Scherrer
  */
 @Configuration
-public class WebSecurityConfiguration {
+public class ServiceRegistrySecurityConfiguration {
 
     @Profile("SECURED")
     @Bean
-    public SecurityFilterChain securedFilterChain(HttpSecurity http) throws Exception {
-
+    public SecurityFilterChain securedFilterChain(HttpSecurity http) {
         http.authorizeHttpRequests(x -> x.anyRequest().authenticated())
                 .httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable)
@@ -47,9 +46,8 @@ public class WebSecurityConfiguration {
 
     @Profile("!SECURED")
     @Bean
-    public SecurityFilterChain unsecuredFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(x -> x.requestMatchers("/**").permitAll())
+    public SecurityFilterChain unsecuredFilterChain(HttpSecurity http) {
+        http.authorizeHttpRequests(x -> x.requestMatchers("/**").permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilter(new CorsFilter(new PermitAllCorsConfigurationSource()));
         return http.build();

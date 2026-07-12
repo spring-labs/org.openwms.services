@@ -1,5 +1,5 @@
 /*
- * Copyright 2005-2025 the original author or authors.
+ * Copyright 2005-2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openwms.services;
+package org.openwms.services.app;
 
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -30,16 +29,10 @@ import org.springframework.context.annotation.Configuration;
  */
 @ConditionalOnProperty("owms.tracing.url")
 @ConditionalOnClass(name = "io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter")
-@AutoConfiguration
+@Configuration(proxyBeanMethods = false)
 public class ServiceRegistryOtlpConfiguration {
 
-    @ConditionalOnProperty("owms.tracing.url")
-    @Configuration(proxyBeanMethods = false)
-    @ConditionalOnClass(name = "io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter")
-    public static class OtelConfiguration {
-        @ConditionalOnClass(name = "io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter")
-        public @Bean OtlpGrpcSpanExporter otlpHttpSpanExporter(@Value("${owms.tracing.url}") String url) {
-            return OtlpGrpcSpanExporter.builder().setEndpoint(url).build();
-        }
+    public @Bean OtlpGrpcSpanExporter otlpGrpcSpanExporter(@Value("${owms.tracing.url}") String url) {
+        return OtlpGrpcSpanExporter.builder().setEndpoint(url).build();
     }
 }
