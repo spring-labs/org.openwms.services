@@ -15,15 +15,9 @@
  */
 package org.openwms.services;
 
-import io.micrometer.core.instrument.MeterRegistry;
 import org.ameba.app.SolutionApp;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-import org.springframework.context.annotation.Bean;
 
 /**
  * A ServiceRegistryRunner.
@@ -31,14 +25,7 @@ import org.springframework.context.annotation.Bean;
  * @author Heiko Scherrer
  */
 @SpringBootApplication(scanBasePackageClasses = SolutionApp.class, scanBasePackages = &quot;org.openwms&quot;)
-@EnableEurekaServer
-@EnableDiscoveryClient
-<span class="fc" id="L36">public class ServiceRegistryRunner {</span>
-
-    @Bean
-    MeterRegistryCustomizer&lt;MeterRegistry&gt; metricsCommonTags(@Value(&quot;${spring.application.name}&quot;) String applicationName) {
-<span class="fc" id="L40">        return registry -&gt; registry.config().commonTags(&quot;application&quot;, applicationName);</span>
-    }
+<span class="fc" id="L28">public class ServiceRegistryRunner {</span>
 
     /**
      * Boot up!
@@ -46,7 +33,7 @@ import org.springframework.context.annotation.Bean;
      * @param args Some args
      */
     public static void main(String[] args) {
-<span class="nc" id="L49">        SpringApplication.run(ServiceRegistryRunner.class, args);</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L36">        SpringApplication.run(ServiceRegistryRunner.class, args);</span>
+<span class="nc" id="L37">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
