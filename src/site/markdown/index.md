@@ -1,15 +1,23 @@
 # OpenWMS.org Registry Service
 A typical discovery service used to register microservice instances that need to find each other, based on Netflix Eureka.
+The service is built on Java 25, Spring Boot 4.1 and Spring Cloud 2025.1.
 
 # Build and Run locally
 ```
 $ ./mvnw package
 $ java -jar target/openwms-services-exec.jar 
 ```
+The Eureka dashboard and API are served on port 8761 (`PORT`), the management endpoints (`health`, `info`, `loggers` and
+`prometheus`) are served on port 8990 (`MGMTPORT`) so that Prometheus and Spring Boot Admin work out-of-the-box in a
+development environment. In production, access to these endpoints must be protected by the gateway.
+
+# Spring Profiles
+- `SECURED`: All endpoints require HTTP Basic authentication
+- `OTLP`: Traces are exported via OTLP to the collector configured with `owms.tracing.url`
 
 # Start as Docker container
 ```
-$ docker run -p 8761:8761 interface21/openwms-services:latest
+$ docker run -p 8761:8761 -p 8990:8990 interface21/openwms-services:latest
 ```
 
 # Release
