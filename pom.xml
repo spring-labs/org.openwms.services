@@ -66,7 +66,7 @@
     </ciManagement>
 
     <properties>
-        <error_prone_annotations.version>2.49.0</error_prone_annotations.version>
+        <error_prone_annotations.version>2.50.0</error_prone_annotations.version>
         <hk2-api.version>4.0.0-M3</hk2-api.version>
         <httpclient.version>4.5.14</httpclient.version>
         <spring-cloud-dependencies.version>2025.1.2</spring-cloud-dependencies.version>
